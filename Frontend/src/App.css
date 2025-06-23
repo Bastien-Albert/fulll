@@ -1,0 +1,92 @@
+
+.theme-mode-dark {
+  --space: 8px;
+  --border: 62 63 63;
+  --background: 24 18 20;
+  --background-body: 18 20 20;
+  --background-transparent: 32 45 67;
+  --color-primary: 92 110 224;
+  --color-primary-secondary: 63 74 155;
+  --color-primary-to: 36 47 125;
+  --color-gray-800: 39 39 42;
+  --text-color-gray: #bdbdc7;
+  --text-color: white;
+
+  --bg-header: 18 20 20;
+  --border-herder: 39 39 42;
+  --color-logo-header: white;
+  --color-item-link: var(--text-color);
+  --button-color-color: var(--text-color);
+
+  --color-text-minor: 161 161 170;
+  --card-background: 24 24 27;
+  --card-box-shadow-color: 0 0 0;
+  --background-footer-card : 35 36 36;
+
+  --pagination-background: 24 24 27;
+}
+
+.theme-mode-light {
+  --space: 8px;
+  --border: 213 227 236;
+  --background: 24 18 20;
+  --background-body: 247 248 248;
+  --background-transparent: 238 244 255;
+  --color-primary: 92 110 224;
+  --color-primary-secondary: 63 74 155;
+  --color-primary-to: 36 47 125;
+  --color-gray-800: 231 231 231;
+  --text-color: black;
+  --text-color-gray: #434343;
+
+  --bg-header: var(--background-body);
+  --border-herder: 217 217 217;
+  --color-logo-header: rgb(var(--color-primary));
+  --color-item-link: var(--text-color);
+  --button-color-color: var(--text-color);
+
+  --color-text-minor: 113 113 113;
+
+  --card-background: 253 253 253;
+  --card-box-shadow-color: 0 0 0;
+  --background-footer-card: 247 247 247;
+
+  --pagination-background: 253 253 253;
+}
+
+body {
+  margin: 0;
+  font-family: Open sans, "Open sans Fallback: Arial", ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  z-index: -1;
+  background: rgb(var(--background-body));
+  overscroll-behavior: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.root-container {
+  background: rgb(var(--background-body));
+  color: var(--text-color);
+  min-height: 100vh;
+}
+
+main {
+  max-width: calc(1400px + 10px);
+  margin: 0 auto;
+  width: 100%;
+  padding: 30px 0;
+}
+
+.p-10 {
+  padding: 10px;
+}
+
+.container {
+  margin: 0 10px;
+}
+

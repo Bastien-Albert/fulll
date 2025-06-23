@@ -1,0 +1,60 @@
+.usersContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-right: -1rem ;
+}
+
+.userCard {
+    flex: 0 0 calc(25% - 1rem); /* 25% moins l'espacement */
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .userCard {
+        flex: 0 0 calc(50% - 16px);
+    }
+}
+
+@media (max-width: 480px) {
+    .userCard {
+        flex: 0 0 100%;
+    }
+
+    .usersContainer {
+        margin-right: 0;
+    }
+}
+
+.userControl {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.userControlButton {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: .375rem;
+    border-radius: 5px;
+    transition: background 0.2s;
+}
+
+.userControlSelectAll {
+    background: rgb(var(--card-background));
+    border: 1px solid rgb(var(--border));
+    font-size: 14px;
+    padding: 5px 10px;
+    color: var(--text-color);
+    position: relative;
+    margin: 0 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.userControlSelectAllCheckbox {
+    font-size: 16px;
+}

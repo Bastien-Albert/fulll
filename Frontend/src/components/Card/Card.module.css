@@ -1,0 +1,16 @@
+
+.card {
+    background: rgb(var(--card-background));
+    border: 1px solid rgb(var(--border));
+    border-radius: 5px;
+    box-shadow: rgb(255, 255, 255) 0 0 0 0;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: all .2s ease-in-out;
+}
+
+.cardA:hover {
+    border-color: rgb(var(--color-primary));
+    background: rgb(var(--background-transparent));
+}
