@@ -135,9 +135,8 @@ describe('Users component', () => {
             />
         );
 
-        // Alternatively, query by button with DeleteIcon and CopyIcon - here just use buttons order
         const buttons = screen.getAllByRole('button');
-        const duplicateBtn = buttons[1]; // second button is duplicate in UserControl
+        const duplicateBtn = buttons[1];
 
         fireEvent.click(duplicateBtn);
 
@@ -168,7 +167,7 @@ describe('Users component', () => {
         );
 
         const buttons = screen.getAllByRole('button');
-        const deleteBtn = buttons[0]; // first button is delete
+        const deleteBtn = buttons[0];
 
         fireEvent.click(deleteBtn);
 
