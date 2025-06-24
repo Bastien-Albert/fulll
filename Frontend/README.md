@@ -1,9 +1,22 @@
-# React GitHub User Search App – Documentation
+# ⚛️ React GitHub User Search App – Documentation
 
-## Note on the setup
+A lightweight GitHub user search interface built with React, TypeScript, and Vite.  
+It supports live debounced search, dark/light mode, multi-selection, pagination, and local editing (duplicate/delete).
+
+## 📚 Table of Contents
+
+- [Setup](#note-on-the-setup)
+- [Project Structure](#-project-structure)
+- [Component Overview](#-components-summary)
+- [API Service](#-api-service)
+- [Debounced Search Logic](#-debounced-search-with-useeffect)
+- [Header Controls](#header-component-controls)
+- [Getting Started](#-getting-started)
+
+## 🛠️ Note on the Setup
 
 This project uses **Vite** instead of Create React App for faster development.  
-No runtime dependencies were added (only `react` and `react-dom`).
+Only minimal dependencies are used: `react` and `react-dom`.
 
 ## 📁 Project Structure
 
@@ -51,7 +64,7 @@ src/
 * Toggle with icon feedback.
 
 ### `Icon`
-* An SVG icon list
+* Reusable SVG icon list.
 
 ---
 
@@ -59,8 +72,13 @@ src/
 
 ### `searchUsers(query: string, options: object, page: number)`
 
-Returns a GitHub-style object with `items`, `total_count`, `incomplete_results`, and `totalPage`.
-Used with debounce and pagination.
+Fetches GitHub users matching the query string.  
+Returns a GitHub-style object including:
+
+- `items`: array of users
+- `total_count`: total result count
+- `incomplete_results`: boolean
+- `totalPage`: number of pages (custom)
 
 ---
 
