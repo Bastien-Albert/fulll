@@ -8,11 +8,11 @@ No runtime dependencies were added (only `react` and `react-dom`).
 ## 📁 Project Structure
 
 ```
+__mocks__/
 src/
 ├── components/       # All UI components (User, Header, Pagination, etc.)
 ├── services/         # API calls to GitHub
 ├── types/            # TypeScript type declarations
-├── __mocks__/        # Mocks for CSS in Jest
 ├── App.tsx           # Root component
 ├── App.css           # Global styles
 
