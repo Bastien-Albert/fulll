@@ -10,9 +10,10 @@ interface UserProps {
     editMode: boolean;
 }
 
-const User: React.FC<UserProps> = function ({user, setSelectedIds, selectedIds, editMode}) {
-
-    const handleOnChange = function () {
+const User: React.FC<UserProps> = function (
+    {user, setSelectedIds, selectedIds, editMode}
+) {
+    const handleOnChange = function (): void {
         const newSet = new Set(selectedIds);
         if(newSet.has(user.id)) {
             newSet.delete(user.id)
@@ -35,7 +36,9 @@ const User: React.FC<UserProps> = function ({user, setSelectedIds, selectedIds, 
             <div className={styles.userContent}>
                 <div className={styles.avatarContainer}>
                     <div className={styles.avatarContent}>
-                        <img className={styles.avatar} src={user.avatar_url} alt={'Avatar du compte gitbug de' + user.login} />
+                        <img className={styles.avatar} src={user.avatar_url}
+                             alt={'Avatar du compte gitbug de' + user.login}
+                        />
                     </div>
                 </div>
                 <div className={styles.userMain}>

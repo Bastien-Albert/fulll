@@ -1,9 +1,21 @@
-
+.userControlOuter {
+    position: sticky;
+    top: 70px;
+    z-index: 1;
+    background-color: rgb(var(--bg-header) / .8);
+    backdrop-filter: blur(8px);
+}
 
 .userControl {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 5px 0;
+    transition: border-bottom 0.3s ease;
+}
+
+.userControlScroll {
+    border-bottom: 1px solid rgb(var(--border-herder));
 }
 
 .userControlButton {

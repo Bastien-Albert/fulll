@@ -2,26 +2,31 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    margin-right: -1rem ;
 }
 
 .userCard {
-    flex: 0 0 calc(25% - 1rem); /* 25% moins l'espacement */
+    --user-card-column: 4;
+    --user-card-marge: 3rem;
+    flex: 0 0 calc((100% - var(--user-card-marge)) / var(--user-card-column));
     box-sizing: border-box;
+}
+@media (max-width: 960px) {
+    .userCard {
+        --user-card-column: 3;
+        --user-card-marge: 2em;
+    }
 }
 
 @media (max-width: 768px) {
     .userCard {
-        flex: 0 0 calc(50% - 16px);
+        --user-card-column: 2;
+        --user-card-marge: 1em;
     }
 }
 
 @media (max-width: 480px) {
     .userCard {
-        flex: 0 0 100%;
-    }
-
-    .usersContainer {
-        margin-right: 0;
+        --user-card-column: 1;
+        --user-card-marge: 0rem;
     }
 }

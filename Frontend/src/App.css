@@ -52,6 +52,8 @@
   --background-footer-card: 247 247 247;
 
   --pagination-background: 253 253 253;
+
+  --max-width: calc(1400px + 10px);
 }
 
 body {
@@ -75,9 +77,13 @@ body {
   min-height: 100vh;
 }
 
-main {
+.site-width {
   max-width: calc(1400px + 10px);
   margin: 0 auto;
+  width: 100%;
+}
+
+main {
   width: 100%;
   padding: 30px 0;
 }

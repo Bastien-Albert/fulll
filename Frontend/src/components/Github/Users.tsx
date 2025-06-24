@@ -71,17 +71,21 @@ const Users: React.FC<UsersProps> = function (
                 users={usersPage[page]}
                 selectedIds={selectedIds}
             />}
-            <div className={styles.usersContainer}>
-                {usersPage[page].map((user: UserGithub) => (
-                    <Card href={user.html_url} key={user.id} className={styles.userCard}>
-                        <User selectedIds={selectedIds}
-                              user={user}
-                              setSelectedIds={setSelectedIds}
-                              editMode={editMode}/>
-                    </Card>
-                ))}
+            <div className="site-width">
+                <div className="container">
+                    <div className={styles.usersContainer}>
+                        {usersPage[page].map((user: UserGithub) => (
+                            <Card href={user.html_url} key={user.id} className={styles.userCard}>
+                                <User selectedIds={selectedIds}
+                                      user={user}
+                                      setSelectedIds={setSelectedIds}
+                                      editMode={editMode}/>
+                            </Card>
+                        ))}
+                    </div>
+                    <Pagination page={page} setPage={setPage} totalPage={githubInfo.totalPage}/>
+                </div>
             </div>
-            <Pagination page={page} setPage={setPage} totalPage={githubInfo.totalPage}/>
         </div>
     )
 }

@@ -5,18 +5,22 @@ import type {User as GithubUser} from './types/github';
 import Header from "./components/Header/Header.tsx";
 import './App.css';
 import Users from "./components/Github/Users.tsx";
-import Card from "./components/Card/Card.tsx";
 import Loader from "./components/Loader/Loader.tsx";
+import Message from "./components/Message/Message.tsx";
 
 const App = () => {
-    const [query, setQuery] = useState('');
+    const [query, setQuery] = useState<string>('');
     const [githubInfo, setGithubInfo] = useState<Github>({incomplete_results: false, items: [], total_count: 0, totalPage: 0});
-    const [isDarkMode, setIsDarkMode] = useState(true);
+    const [isDarkMode, setIsDarkMode] = useState<boolean>(
+        localStorage.getItem('darkMode') === 'true'
+            ? true
+            : localStorage.getItem('darkMode') !== 'false'
+    );
     const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
-    const [page, setPage] = useState(1);
-    const [editMode, setEditMode] = useState(false);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [error, setError] = useState<string>('');
+    const [page, setPage] = useState<number>(1);
+    const [editMode, setEditMode] = useState<boolean>(false);
     const [usersPage, setUsersPage] = useState<Record<number, GithubUser[]>>({});
 
     // Debounced search
@@ -29,14 +33,14 @@ const App = () => {
             return;
         }
 
-        const timeout = setTimeout(() => {
+        const timeout = setTimeout((): void => {
             setLoading(true);
             setError('');
             setPage(1);
             setUsersPage({})
 
             searchUsers(query, { signal: controller.signal }, page)
-                .then(data => {
+                .then((data: Github) => {
                     setGithubInfo(data);
                     setSelectedIds(new Set());
                     setUsersPage({[page]: data.items});
@@ -74,7 +78,7 @@ const App = () => {
         setError('');
 
         searchUsers(query, { signal: controller.signal }, page)
-            .then(data => {
+            .then((data: Github) => {
                 setGithubInfo(data);
                 setSelectedIds(new Set());
                 setUsersPage({...usersPage, [page]: data.items});
@@ -95,7 +99,7 @@ const App = () => {
             setIsDarkMode(false)
             localStorage.setItem('darkMode', 'false');
         } else {
-            localStorage.setItem('darkMode', 'false');
+            localStorage.setItem('darkMode', 'true');
             setIsDarkMode(true)
         }
     }
@@ -108,22 +112,20 @@ const App = () => {
                     setEditMode={setEditMode}
                     editMode={editMode}/>
             <main>
-                <div className="container">
-                    {error && !loading && <Card className="p-10">{error}</Card>}
-                    {!error && !loading && !githubInfo.items.length && <Card className="p-10">No result</Card>}
-                    {loading && (<Loader />)}
-                    {typeof usersPage[page] !== "undefined" && !error && !loading
-                        ? <Users setSelectedIds={setSelectedIds}
-                                 selectedIds={selectedIds}
-                                 githubInfo={githubInfo}
-                                 usersPage={usersPage}
-                                 setUsersPage={setUsersPage}
-                                 page={page}
-                                 editMode={editMode}
-                                 setPage={setPage}/>
-                        : null
-                    }
-                </div>
+                {error && !loading && <Message>{error}</Message>}
+                {!error && !loading && !githubInfo.items.length && <Message>No result</Message>}
+                {loading && (<Loader />)}
+                {typeof usersPage[page] !== "undefined" && !error && !loading
+                    ? <Users setSelectedIds={setSelectedIds}
+                             selectedIds={selectedIds}
+                             githubInfo={githubInfo}
+                             usersPage={usersPage}
+                             setUsersPage={setUsersPage}
+                             page={page}
+                             editMode={editMode}
+                             setPage={setPage}/>
+                    : null
+                }
             </main>
         </div>
     );
