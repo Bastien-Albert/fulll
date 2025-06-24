@@ -57,7 +57,7 @@ src/
 
 ## 🔍 API Service
 
-### `searchUsers(query, { signal }, page)`
+### `searchUsers(query: string, options: object, page: number)`
 
 Returns a GitHub-style object with `items`, `total_count`, `incomplete_results`, and `totalPage`.
 Used with debounce and pagination.
