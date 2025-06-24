@@ -64,6 +64,67 @@ Used with debounce and pagination.
 
 ---
 
+## ⏳ Debounced Search with `useEffect`
+
+To improve performance and avoid sending too many requests to the GitHub API, we implement a debounced search using React's `useEffect`, combined with `setTimeout` and `AbortController`.
+
+This technique waits for the user to stop typing (500ms delay) before triggering the actual search, and cancels any previous pending request if the query changes in the meantime.
+
+### 💡 Why this matters
+
+- **Debouncing**: Prevents making an API call on every keystroke.
+- **AbortController**: Cancels the previous fetch if a new one starts, avoiding race conditions and unnecessary data updates.
+- **Cleanup**: Ensures no memory leaks by clearing the timeout and aborting fetch on unmount or query change.
+
+### 📦 Implementation
+
+```tsx
+useEffect(() => {
+    const controller = new AbortController();
+
+    if (!query) {
+        // If the search field is empty, reset everything
+        setGithubInfo({
+            incomplete_results: false,
+            items: [],
+            total_count: 0,
+            totalPage: 0
+        });
+        setUsersPage({});
+        return;
+    }
+
+    // Wait 500ms before triggering the search
+    const timeout = setTimeout(() => {
+        setLoading(true);
+        setError('');
+        setPage(1);
+        setUsersPage({});
+
+        searchUsers(query, { signal: controller.signal }, page)
+            .then((data: Github) => {
+                setGithubInfo(data);
+                setSelectedIds(new Set());
+                setUsersPage({ [page]: data.items });
+            })
+            .catch(err => {
+                // Ignore abort errors, display others
+                if (err.name !== 'AbortError') setError(err.message);
+            })
+            .finally(() => setLoading(false));
+    }, 500);
+
+    return () => {
+        // Cancel the fetch if query changes or component unmounts
+        controller.abort();
+        clearTimeout(timeout);
+    };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [query]);
+```
+---
+
 ## Header Component Controls
 
 The header contains two important control buttons:
